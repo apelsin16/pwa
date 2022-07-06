@@ -23,11 +23,11 @@ function App() {
     }
 
   return (
-    <div className="App">
+    <div className="card">
         <div onClick={hide}>
-            <button onClick={hide}>Close</button>
+            <button className='btn btn-primary' onClick={hide}>Close</button>
             Hello! Wanna add to homescreen?
-            <button onClick={promptToInstall}>Add to homescreen</button>
+            <button className='btn btn-primary' onClick={promptToInstall}>Add to homescreen</button>
         </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useAddToHomescreenPrompt } from "./useAddToHomescreenPrompt";
+import {useAddToHomescreenPrompt} from "./useAddToHomescreenPrompt";
 import './App.css';
 
 function App() {
@@ -22,15 +22,21 @@ function App() {
         </div>);
     }
 
-  return (
-    <div className="card">
-        <div onClick={hide}>
-            <button className='btn btn-primary' onClick={hide}>Close</button>
-            Hello! Wanna add to homescreen?
-            <button className='btn btn-primary' onClick={promptToInstall}>Add to homescreen</button>
+    return (
+        <div className="container">
+            {/*<div onClick={hide}>*/}
+            {/*    <button className='btn btn-primary' onClick={hide}>Close</button>*/}
+            {/*    Hello! Wanna add to homescreen?*/}
+            {/*    <button className='btn btn-primary' onClick={promptToInstall}>Add to homescreen</button>*/}
+            {/*</div>*/}
+            <img src="https://klever.blog/wp-content/uploads/2018/05/kakimi-bivaut-it-kompanii.png"
+                 alt="it"/>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam consequuntur dolor ducimus expedita
+                facere in maxime non totam vero. Dignissimos dolor ea earum esse est facilis molestiae nihil nisi porro
+                repudiandae. Accusantium consectetur corporis dolor ducimus esse ex, excepturi fugit illo ipsum iste,
+                mollitia officiis omnis sed tempore velit?</p>
         </div>
-    </div>
-  );
+    );
 }
 
 export default App;

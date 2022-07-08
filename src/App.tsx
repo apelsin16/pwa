@@ -8,7 +8,6 @@ function App() {
     // const hide = () => setVisibleState(false);
 
 
-
     // React.useEffect(
     //     () => {
     //         if (prompt) {
@@ -25,7 +24,7 @@ function App() {
     // }
 
     return (
-        <div className="container">
+        <div className="container App">
             {/*<div onClick={hide}>*/}
             {/*    <button className='btn btn-primary' onClick={hide}>Close</button>*/}
             {/*    Hello! Wanna add to homescreen?*/}

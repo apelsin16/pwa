@@ -13,7 +13,9 @@ function App() {
     const [size, setSize] = React.useState([0, 0]);
 
     React.useEffect(() => {
-        console.log('orientation: ', orientation, 'angle:', angle, 'size: ', size)
+        console.log('orientation: ', orientation, 'angle:', angle, 'size: ', size);
+        setOrientation(window.screen.orientation.type);
+        setAngle(window.screen.orientation.angle);
     },[size])
 
     React.useLayoutEffect(() => {

@@ -1,5 +1,6 @@
 import * as React from "react";
 // import {useAddToHomescreenPrompt} from "./useAddToHomescreenPrompt";
+import classNames from "classnames";
 import './App.css';
 import {useEffect} from "react";
 
@@ -8,6 +9,7 @@ function App() {
     // const [isVisible, setVisibleState] = React.useState(false);
     // const hide = () => setVisibleState(false);
     const [angle, setAngle] = React.useState(window.screen.orientation.angle);
+
     const [orientation, setOrientation] = React.useState(window.screen.orientation.type)
 
     const [size, setSize] = React.useState([0, 0]);
@@ -44,7 +46,10 @@ function App() {
     // }
 
     return (
-        <div className="container App" >
+        <div className={classNames("container App", {
+            "turnedLeft": angle === 90,
+            "turnedRight": angle === 270
+        })} >
             {/*<div onClick={hide}>*/}
             {/*    <button className='btn btn-primary' onClick={hide}>Close</button>*/}
             {/*    Hello! Wanna add to homescreen?*/}

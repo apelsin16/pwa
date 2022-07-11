@@ -39,6 +39,26 @@
   }
 }
 
+.turnedLeft {
+  transform: rotate(-90deg);
+  transform-origin: left top;
+  width: 100vh;
+  overflow-x: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.turnedRight {
+  transform: rotate(90deg);
+  transform-origin: left top;
+  width: 100vh;
+  overflow-x: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
 /*@media screen and (orientation: landscape) {*/
 /*  .App {*/
 /*    transform: rotate(-90deg);*/

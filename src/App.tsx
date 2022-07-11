@@ -1,11 +1,29 @@
 import * as React from "react";
 // import {useAddToHomescreenPrompt} from "./useAddToHomescreenPrompt";
 import './App.css';
+import {useEffect} from "react";
 
 function App() {
     // const [prompt, promptToInstall] = useAddToHomescreenPrompt();
     // const [isVisible, setVisibleState] = React.useState(false);
     // const hide = () => setVisibleState(false);
+    const [angle, setAngle] = React.useState(window.screen.orientation.angle);
+    const [orientation, setOrientation] = React.useState(window.screen.orientation.type)
+
+    const [size, setSize] = React.useState([0, 0]);
+
+    React.useEffect(() => {
+        console.log('orientation: ', orientation, 'angle:', angle, 'size: ', size)
+    },[size])
+
+    React.useLayoutEffect(() => {
+        function updateSize() {
+            setSize([window.innerWidth, window.innerHeight]);
+        }
+        window.addEventListener('resize', updateSize);
+        updateSize();
+        return () => window.removeEventListener('resize', updateSize);
+    }, []);
 
 
     // React.useEffect(
@@ -24,7 +42,7 @@ function App() {
     // }
 
     return (
-        <div className="container App">
+        <div className="container App" >
             {/*<div onClick={hide}>*/}
             {/*    <button className='btn btn-primary' onClick={hide}>Close</button>*/}
             {/*    Hello! Wanna add to homescreen?*/}
@@ -36,10 +54,8 @@ function App() {
                     className='card-img-top'
                 />
                 <h5 className="card-title">Card title</h5>
-                <p className='card-texr'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam consequuntur dolor ducimus expedita
-                    facere in maxime non totam vero. Dignissimos dolor ea earum esse est facilis molestiae nihil nisi porro
-                    repudiandae. Accusantium consectetur corporis dolor ducimus esse ex, excepturi fugit illo ipsum iste,
-                    mollitia officiis omnis sed tempore velit?</p>
+                <p className='card-texr'>Orientation: {orientation}</p>
+                <p className='card-texr'>Angel: {angle}</p>
                 <a href="#"
                    className="btn btn-primary">Go somewhere</a>
             </div>

@@ -8,26 +8,47 @@ function App() {
     // const [prompt, promptToInstall] = useAddToHomescreenPrompt();
     // const [isVisible, setVisibleState] = React.useState(false);
     // const hide = () => setVisibleState(false);
-    const [angle, setAngle] = React.useState(window.screen.orientation.angle);
 
-    const [orientation, setOrientation] = React.useState(window.screen.orientation.type)
+    const isLandscape = () => window.matchMedia('(orientation:landscape)').matches,
+        [orientation, setOrientation] = React.useState(isLandscape() ? 'landscape' : 'portrait'),
 
-    const [size, setSize] = React.useState([0, 0]);
-
-    React.useEffect(() => {
-        console.log('orientation: ', orientation, 'angle:', angle, 'size: ', size);
-        setOrientation(window.screen.orientation.type);
-        setAngle(window.screen.orientation.angle);
-    },[size])
-
-    React.useLayoutEffect(() => {
-        function updateSize() {
-            setSize([window.innerWidth, window.innerHeight]);
+        onWindowResize = () => {
+            // @ts-ignore
+            clearTimeout(window.resizeLag)
+            // @ts-ignore
+            window.resizeLag = setTimeout(() => {
+                // @ts-ignore
+                delete window.resizeLag
+                setOrientation(isLandscape() ? 'landscape' : 'portrait')
+            }, 200)
         }
-        window.addEventListener('resize', updateSize);
-        updateSize();
-        return () => window.removeEventListener('resize', updateSize);
-    }, []);
+
+    // const [angle, setAngle] = React.useState(window.screen.orientation.angle);
+
+    // const [orientation, setOrientation] = React.useState(window.screen.orientation.type)
+
+    // const [size, setSize] = React.useState([0, 0]);
+
+    // React.useEffect(() => {
+    //     console.log('orientation: ', orientation, 'angle:', angle, 'size: ', size);
+    //     setOrientation(window.screen.orientation.type);
+    //     setAngle(window.screen.orientation.angle);
+    // },[size])
+
+    React.useEffect(() => (
+        onWindowResize(),
+            window.addEventListener('resize', onWindowResize),
+            () => window.removeEventListener('resize', onWindowResize)
+    ),[])
+
+    // React.useLayoutEffect(() => {
+    //     function updateSize() {
+    //         setSize([window.innerWidth, window.innerHeight]);
+    //     }
+    //     window.addEventListener('resize', updateSize);
+    //     updateSize();
+    //     return () => window.removeEventListener('resize', updateSize);
+    // }, []);
 
 
     // React.useEffect(
@@ -47,8 +68,8 @@ function App() {
 
     return (
         <div className={classNames("container App", {
-            "turnedLeft": angle === 90,
-            "turnedRight": angle === 270
+            // "turnedLeft": angle === 90,
+            // "turnedRight": angle === 270
         })} >
             {/*<div onClick={hide}>*/}
             {/*    <button className='btn btn-primary' onClick={hide}>Close</button>*/}
@@ -62,7 +83,7 @@ function App() {
                 />
                 <h5 className="card-title">Card title</h5>
                 <p className='card-texr'>Orientation: {orientation}</p>
-                <p className='card-texr'>Angel: {angle}</p>
+                {/*<p className='card-texr'>Angel: {angle}</p>*/}
                 <a href="#"
                    className="btn btn-primary">Go somewhere</a>
             </div>

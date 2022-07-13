@@ -9,37 +9,22 @@ function App() {
     // const [isVisible, setVisibleState] = React.useState(false);
     // const hide = () => setVisibleState(false);
 
-    const isLandscape = () => window.matchMedia('(orientation:landscape)').matches,
-        [orientation, setOrientation] = React.useState(isLandscape() ? 'landscape' : 'portrait'),
 
-        onWindowResize = () => {
-            // @ts-ignore
-            clearTimeout(window.resizeLag)
-            // @ts-ignore
-            window.resizeLag = setTimeout(() => {
-                // @ts-ignore
-                delete window.resizeLag
-                setOrientation(isLandscape() ? 'landscape' : 'portrait')
-            }, 200)
-        }
 
-    // const [angle, setAngle] = React.useState(window.screen.orientation.angle);
+    const [angle, setAngle] = React.useState(window.screen.orientation.angle);
 
-    // const [orientation, setOrientation] = React.useState(window.screen.orientation.type)
+    const [orientation, setOrientation] = React.useState(window.screen.orientation.type)
 
-    // const [size, setSize] = React.useState([0, 0]);
+    const [size, setSize] = React.useState([0, 0]);
 
-    // React.useEffect(() => {
-    //     console.log('orientation: ', orientation, 'angle:', angle, 'size: ', size);
-    //     setOrientation(window.screen.orientation.type);
-    //     setAngle(window.screen.orientation.angle);
-    // },[size])
+    React.useEffect(() => {
+        console.log('orientation: ', orientation, 'angle:', angle, 'size: ', size);
+        setOrientation(window.screen.orientation.type);
+        setAngle(window.screen.orientation.angle);
+        window.screen.orientation.lock("portrait-primary");
+    },[size])
 
-    React.useEffect(() => (
-        onWindowResize(),
-            window.addEventListener('resize', onWindowResize),
-            () => window.removeEventListener('resize', onWindowResize)
-    ),[])
+
 
     // React.useLayoutEffect(() => {
     //     function updateSize() {
